@@ -1,30 +1,48 @@
 # Developing a Novel Information Visualisation
-For this project, I prepared a dataset of Formula 1 race data spanning from 1950 to 2017. The data was sourced from an open Kaggle repository, which compiles official historical records into structured CSV tables. While standard standings and championship summaries are widely available through the FIA and media outlets, my goal was to uncover fresh perspectives —novel statistics, trends, and comparisonsthat go beyond conventional podium results.While the Fédéra- tion Internationale de lAutomobile (FIA) and media outlets frequently publish standard stand- ings and championship tables, my goal was to surface fresh perspectives —novel statistics and crosscomparisonsthat go beyond the usual podium finishes. I processed and combined multiple tables (races, results, lap times, standings, constructors, drivers, and status codes) in Python, then crafted a series of focused Vega-Lite charts to reveal patterns.
-
-
-This repository contains an end-to-end information visualisation project built on historical Formula 1 data (1950–2017). The goal is to go beyond standard standings and podium summaries by engineering analysis-ready tables from relational racing records and presenting *novel* perspectives through a multi-view **Vega-Lite** dashboard.
+## Project Overview
+This repository contains an end-to-end information visualisation project built on historical Formula 1 data (1950–2017). While the Fédération Internationale de lAutomobile (FIA) and media outlets frequently publish standard standings and championship tables, my goal was to surface fresh perspectives — novel statistics and cross-comparisons that go beyond the usual podium finishes. I processed and combined multiple tables (races, results, lap times, standings, constructors, drivers, and status codes) in Python, then crafted a series of focused **Vega-Lite** charts to reveal patterns.
 
 The project demonstrates practical skills in:
 - Data wrangling and feature engineering on multi-table sports data (joins, aggregation, derived metrics)
-- Reproducible analysis in Jupyter/Python
-- Interactive visual analytics design and implementation (Vega-Lite specification)
+- Reproducible preprocessing, analysis in Jupyter/Python
+- Interactive visual analytics design and implementation (Vega-Lite v6 specification)
 
 ---
+## Data Description
+The data was sourced from an open [Kaggle repository](https://www.kaggle.com/datasets/cjgdev/formula-1-race-data-19502017?resource=download%20) that compiles official Formula 1 historical records (1950–2017) into a structured set of normalized CSV tables.
 
-## Project Overview
+**`Formula1_data/` (Raw relational tables)** 
+This folder contains the original CSV tables. These files are treated as the canonical input layer: tables are linked via stable identifiers (e.g., raceId, driverId, constructorId, statusId) and are transformed in `IVzpreprocessing.ipynb` into the curated, visualization-ready datasets stored in `Visualisations_data/`.
 
-**Dataset:** Formula 1 race history (1950–2017) packaged as normalized CSV tables (races, results, lap times, standings, constructors/drivers metadata, status codes, etc.).  
-**Outcome:** A set of curated, purpose-built views that reveal patterns in:
-- Constructor dominance over decades
-- Nationality distribution of career wins
-- Non-finish failure modes (status codes)
-- Competitive balance shifts (constructor points by season)
-- Qualifying importance (win-rate by starting position)
-- Pace vs championship points across scoring eras
-- Fastest-lap vs winner’s best-lap comparisons across Grands Prix
+Core tables used in this project:
+- `races.csv`: race metadata (raceId, year, name, etc.)
+- `results.csv`: race outcome records (positions, grid, fastest lap fields, statusId, constructorId/driverId keys, etc.)
+- `lapTimes.csv`: per-lap timing observations
+- `driverStandings.csv`, `constructorStandings.csv`: standings snapshots per race
+- `drivers.csv`, `constructors.csv`: entity metadata
+- `status.csv`: decoding table for non-finish / finish status codes
 
 ---
+## Workflow pipeline
 
+
+
+---
+## Reproducing 
+
+
+---
+## Deliverables
+- Interactive dashboard specification: `visualization.vl.json`
+- Preprocessing & feature engineering notebook: `IVzpreprocessing.ipynb`
+- Raw dataset tables: `Formula1_data/`
+- Derived visualisation datasets: `Visualisations_data/`
+- Design artefacts and write-up:
+    - `IV_design.png` (design/overview image)
+    - `IV_design_report.pdf` (full report and interpretation)
+- Brand assets for the logo grid: `images/`
+  
+---
 ## Repository Structure
 
 ```text
@@ -72,3 +90,5 @@ Developing_a_Novel_InfoVis/
     ├── renault.png
     ├── tyrrel.png
     └── williams.png
+
+
