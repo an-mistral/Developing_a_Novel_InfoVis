@@ -24,31 +24,40 @@ The data was sourced from an open [Kaggle repository](https://www.kaggle.com/dat
 ---
 ## Workflow pipeline
 
-1. **Raw data ingestion** 
-2. **Preprocessing & feature engineering** 
-3. **Export visualization-ready datasets** 
-4. **Vega-Lite v6 specification authoring** 
+1. **Raw data ingestion**
+   Loading the relevant Formula 1 CSV tables.
+2. **Preprocessing & feature engineering**
+   Merge related datasets by their keys and perform data cleaning and transformations. Apply chart-specific filtering (e.g., selecting winners, restricting season ranges, isolating non-finish statuses), convert time fields to standard units, group and aggregate data to compute summary statistics such as counts, averages, and totals, and derive additional analytical metrics. The processed data frames are saved as CSV or JSON files where appropriate.
+3. **Export visualisation-ready datasets** to the `Visualisations_data/` directory.
+4. **Vega-Lite v6 specification authoring**
+   Implement all visualisations declaratively in a single Vega-Lite v6 JSON specification. Each chart is defined as an independent view with explicit data bindings, in-spec transformations, and visual encodings (position, colour, scale, tooltip), using appropriate marks (bar, rect, line, point, image).
 5. **Dashboard composition**
-6. **Rendering & exploration** 
+   Combine individual views into a unified dashboard using `hconcat` and `vconcat`, applying consistent layout, scales, and interaction patterns across charts, and including a central image panel to improve visual perception and narrative coherence.
+6. **Rendering & exploration**
+    Render the final dashboard in any Vega-Lite–compatible environment (e.g., Vega Editor, Vega-Embed, Observable, or a static web page), enabling interactive exploration via tooltips and coordinated visual structure.
 
 ---
 ## Visualisation Highlights
-The final dashboard presents all visualizations together in a single interactive view, with a central F1-themed image to provide better perspective and focus. Each visualization in the dashboard conveys a specific insight:
-- Constructor Champions by Season (1958− 2017):
-- Top 20 Nationalities by Career Wins:
-- Top 20 Non-Finish Statuses:
-- Constructor Points by Season (2010− 2017):
-- Fastest Lap vs Winners Best Lap (2013− 2017):
-- Win Rate by Starting Position:
-- Average Lap Time vs Season Points per Driver (1996− 2017):
-  
+The final dashboard presents all visualisations together in a single interactive view, with a central F1-themed image to provide better perspective and focus. Each visualisation in the dashboard conveys a specific insight:
+- **Constructor Champions by Season (1958−2017)** – Image grid: Shows at a glance (through logos) which constructors dominated each period (e.g., Ferrari in the 2000s, McLaren in the 1980s, Red Bull in the early 2010s, Mercedes mid-2010s) and highlights one-off champions.
+- **Top 20 Nationalities by Career Wins** – Bar chart: Reveals that British and German drivers have by far the most wins, with other countries (e.g., Brazil) also prominent, reflecting the sport’s regional concentration.
+- **Top 20 Non-Finish Statuses** – Bar chart: Indicates the most common non-finish reason is being lapped (+1 Lap), followed by mechanical failures and accidents, highlighting reliability issues.
+- **Constructor Points by Season (2010−2017)** – Heatmap: Highlights the shift in team dominance from Red Bull (2010–2013) to Mercedes (2014–2017) via higher point totals, while showing that Ferrari and McLaren remained consistently competitive.
+- **Fastest Lap vs Winners Best Lap (2013−2017)** – Dual-line chart: Shows that on some circuits (e.g., Abu Dhabi, Spain) the race winner did not set the fastest lap (due to strategic tyre management), whereas on others (Britain, Brazil, Australia) the winner usually did, underscoring how track and strategy influence lap times.
+- **Win Rate by Starting Position** – Stacked bar chart: Reveals roughly 77% of race wins come from the top three grid positions (emphasising qualifying importance), and that wins from starting 10th or lower are extremely rare.
+- **Average Lap Time vs Season Points per Driver (1996−2017)** – Scatterplot: Indicates a strong correlation between faster average lap times and higher points, while the colour-coded eras show how scoring rule changes shifted performance clusters over seasons.
+
 ---
 ## How to Run
-To reproduce the analysis and view the visualizations, follow these steps:
-1. Run the preprocessing notebook: Open `IVzpreprocessing.ipynb` in Jupyter and run all cells. This will read the raw CSV files from `Formula1_data/` and regenerate all derived datasets in `Visualisations_data/`. (The notebook documents the data wrangling process and intermediate analysis.)
-   
-2. Open the Vega-Lite dashboard: Load the `visualization.vl.json` specification in a Vega-Lite compatible viewer. For example, you can copy the JSON content into the online Vega Editor (select the Vega-Lite mode). The interactive dashboard with all charts will render in the browser, allowing you to explore tooltips and interactions. No additional setup is required since the spec references the prepared data files directly.
-   
+
+1. **Prepare the data**  
+   Open `IVzpreprocessing.ipynb` in any environment that supports Jupyter notebooks (e.g., Jupyter Notebook, JupyterLab, VS Code). Run all cells to load the raw Formula 1 CSV files and generate the derived, chart-ready datasets in the `Visualisations_data/` directory.
+
+2. **Render the dashboard**  
+   Open the Vega-Lite specification `visualization.vl.json` in a Vega-Lite v6–compatible environment (e.g., the online Vega Editor, Vega-Embed, Observable, or a static HTML page). The specification loads the prepared datasets via URLs and renders the full interactive dashboard.
+
+No additional configuration or backend services are required.
+
 ---
 ## Deliverables
 - Interactive dashboard specification: `visualization.vl.json` (Vega-Lite v6 JSON defining all charts and layout)
