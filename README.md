@@ -1,6 +1,6 @@
 # Developing a Novel Information Visualisation
 ## Project Overview
-This repository contains an end-to-end information visualisation project built on historical Formula 1 data (1950–2017). While the Fédération Internationale de lAutomobile (FIA) and media outlets frequently publish standard standings and championship tables, my goal was to surface fresh perspectives — novel statistics and cross-comparisons that go beyond the usual podium finishes. I processed and combined multiple tables (races, results, lap times, standings, constructors, drivers, and status codes) in Python, then crafted a series of focused **Vega-Lite** charts to reveal patterns.
+This repository contains an end-to-end information visualisation project built on historical Formula 1 data (1950–2017). While the Fédération Internationale de l'Automobile (FIA) and media outlets frequently publish standard standings and championship tables, my goal was to surface fresh perspectives — novel statistics and cross-comparisons that go beyond the usual podium finishes. I processed and combined multiple tables (races, results, lap times, standings, constructors, drivers, and status codes) in Python, then crafted a series of focused **Vega-Lite** charts to reveal patterns.
 
 The project demonstrates practical skills in:
 - Data wrangling and feature engineering on multi-table sports data 
